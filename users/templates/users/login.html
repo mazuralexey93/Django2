@@ -1,7 +1,7 @@
 {% extends 'users/base.html' %}
 {% block content %}
     <div class="col-lg-5">
-        {% if messages or  form.errors %}
+        {% if messages or form.errors %}
             <div class="alert
              {% if messages %} alert-success {% else %} alert-warning {% endif %}
               alert-dismissible fade show" role="alert"

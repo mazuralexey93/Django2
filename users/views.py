@@ -29,7 +29,7 @@ def register(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Вы успешно зарегистрировались!')
-            return HttpResponseRedirect(reverse('users:login'))  # '/users/login' - authorization page
+            return HttpResponseRedirect(reverse('users:login'))
     else:
         form = UserRegisterForm()
     context = {
@@ -39,16 +39,15 @@ def register(request):
     return render(request, 'users/register.html', context)
 
 
-@login_required()
+@login_required
 def profile(request):
     user = request.user
     if request.method == 'POST':
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=user)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Данные успешно обновлены!')
             return HttpResponseRedirect(reverse('users:profile'))
-        else:
-            print(form.errors)  # в дз сделать вывод ошибок и сообщений (success) на странице
     else:
         form = UserProfileForm(instance=user)
     context = {
