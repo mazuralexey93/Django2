@@ -49,9 +49,22 @@
                         </div>
                     </form>
                     <div class="row">
-                        <div class="col-lg-12" style="margin-top: 33px;">
-                            <input class="btn btn-danger btn-block" type="submit" value="Удалить">
+                        {% if selected_user.is_active %}
+                            <div class="col-lg-12" style="margin-top: 33px;">
+                            <a href="{% url 'admins:admin_users_delete' selected_user.id %}"
+                               class="btn btn-danger btn-block">
+                                Удалить пользователя
+                            </a>
                         </div>
+                        {% else %}
+                            <div class="col-lg-12" style="margin-top: 33px;">
+                            <a href="{% url 'admins:admin_users_undelete' selected_user.id %}"
+                               class="btn btn-success btn-block">
+                                Восстановить пользователя
+                            </a>
+
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
