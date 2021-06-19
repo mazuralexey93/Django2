@@ -72,8 +72,6 @@ def admin_users_undelete(request, id):
     user.save()
     return HttpResponseRedirect(reverse('admins:admin_users'))
 
-# 1:46:56
-
 
 def admin_categories(request):
     context = {
