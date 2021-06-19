@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import user_passes_test
 
 from users.models import User
 from admins.forms import UserAdminRegisterForm, UserAdminProfileForm
+from products.models import ProductCategory
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -70,3 +71,20 @@ def admin_users_undelete(request, id):
     user.is_active = True
     user.save()
     return HttpResponseRedirect(reverse('admins:admin_users'))
+
+# 1:46:56
+
+
+def admin_categories(request):
+    context = {
+        # 'categories': ProductCategory.objects.all(),
+        'title': 'Geekshop|Admin - Категории'
+    }
+    return render(request, 'admins/admin_categories.html', context)
+
+# context
+# {'categories': <QuerySet [<ProductCategory: Clothing>, <ProductCategory: Novelty>, <ProductCategory: Shoes>,
+# <ProductCategory: Accessories>, <ProductCategory: Gifts>]>,
+#  'title': 'Geekshop|Admin - Категории'}
+# request
+# <WSGIRequest: GET '/admins-staff/categories/'
