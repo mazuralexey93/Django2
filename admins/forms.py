@@ -2,6 +2,8 @@ from django import forms
 
 from users.forms import UserRegisterForm, UserProfileForm
 from users.models import User
+from django.forms import ModelForm
+from products.models import ProductCategory
 
 
 class UserAdminRegisterForm(UserRegisterForm):
@@ -15,3 +17,15 @@ class UserAdminRegisterForm(UserRegisterForm):
 class UserAdminProfileForm(UserProfileForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control py-4', 'readonly': False}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control py-4', 'readonly': False}))
+
+
+class AdminCategoryCreateForm(ModelForm):
+    class Meta:
+        model = ProductCategory
+        fields = ['name', 'description']
+
+
+class AdminCategoryUpdateForm(ModelForm):
+    class Meta:
+        model = ProductCategory
+        fields = ['name', 'description']

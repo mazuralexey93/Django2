@@ -3,8 +3,9 @@ from django.urls import reverse
 from django.contrib.auth.decorators import user_passes_test
 
 from users.models import User
-from admins.forms import UserAdminRegisterForm, UserAdminProfileForm
+from admins.forms import UserAdminRegisterForm, UserAdminProfileForm, AdminCategoryCreateForm, AdminCategoryUpdateForm
 from products.models import ProductCategory
+
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -75,14 +76,45 @@ def admin_users_undelete(request, id):
 
 def admin_categories(request):
     context = {
-        # 'categories': ProductCategory.objects.all(),
+        'categories': ProductCategory.objects.all(),
         'title': 'Geekshop|Admin - Категории'
     }
     return render(request, 'admins/admin_categories.html', context)
 
-# context
-# {'categories': <QuerySet [<ProductCategory: Clothing>, <ProductCategory: Novelty>, <ProductCategory: Shoes>,
-# <ProductCategory: Accessories>, <ProductCategory: Gifts>]>,
-#  'title': 'Geekshop|Admin - Категории'}
-# request
-# <WSGIRequest: GET '/admins-staff/categories/'
+
+def admin_categories_create(request):
+    if request.method == 'POST':
+        form = AdminCategoryCreateForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admins:admin_categories'))
+    else:
+        form = AdminCategoryCreateForm()
+    context = {
+        'form': AdminCategoryCreateForm(),
+        'title': 'Geekshop|Admin - Добавить категории'
+    }
+    return render(request, 'admins/admin_categories_create.html', context)
+
+
+def admin_categories_update(request, id):
+    selected_category = ProductCategory.objects.get(id=id)
+    if request.method == 'POST':
+        form = AdminCategoryUpdateForm(data=request.POST, instance=selected_category)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('admins:admin_categories'))
+    else:
+        form = AdminCategoryUpdateForm(instance=selected_category)
+    context = {
+        'title': 'Geekshop|Admin - Обновление категории',
+        'form': form,
+        'selected_category': selected_category
+    }
+    return render(request, 'admins/admin_categories_update_delete.html', context)
+
+
+def admin_categories_delete(request, id):
+    category = User.objects.get(id=id)
+    category.delete()
+    return HttpResponseRedirect(reverse('admins:admin_categories'))

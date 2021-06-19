@@ -1,0 +1,40 @@
+{% extends 'admins/base.html' %}
+
+{% block content %}
+    <main>
+        <div class="container-fluid">
+            <h1 class="mt-4">Редактировать категорию | {{ selected_category.name }}</h1>
+            <form action="{% url 'admins:admin_categories_update' selected_category.id %}" method="post"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-row">
+                    <div class="col-lg-10">
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Название</label>
+                            {{ form.name }}
+                        </div>
+                    </div>
+                    <div class="col-lg-10">
+                        <div class="form-group">
+                            <label for="{{ form.description.id_for_label }}">Описание</label>
+                            {{ form.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-lg-12" style="margin-top: 33px;">
+                        <input class="btn btn-info btn-block" type="submit" value="Сохранить">
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-lg-12" style="margin-top: 33px;">
+                    <a href="{% url 'admins:admin_categories_delete' selected_category.id %}"
+                       class="btn btn-danger btn-block">
+                        Удалить категорию
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -28,12 +28,14 @@
                             {% for category in categories %}
                                 <tr>
                                     <td>
-                                        <a href="{% url 'admins:admin_categories.html' user.id  %}" style="color: dodgerblue">
+{#                                        <a href="{% url 'admins:admin_categories_update' category.id  %}" style="color: dodgerblue">#}
+                                        <a href="" style="color: dodgerblue">
                                             {{ category.name }}
                                         </a>
                                     </td>
-
-                                    <td>{{ category.description }}</td>
+                                    <td>
+                                        {{ category.description }}
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -41,7 +43,7 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <a href="{% url 'admins:admin_users_create' %}">
+                    <a href="{% url 'admins:admin_categories_create' %}">
                         <button class="btn btn-success">Добавить катерогию</button>
                     </a>
                 </div>
