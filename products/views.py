@@ -12,16 +12,18 @@ from products.models import Product, ProductCategory
 def index(request):
     context = {
         'title': 'GeekShop',
-        'header': 'geekShop Store',
+        'header': 'GeekShop Store',
     }
     return render(request, 'products/index.html', context)
 
 
-def products(request):
+def products(request, category_id=None):
     context = {
         'title': 'GeekShop - Каталог',
         'header': 'Создай свой образ в  GeekShop!',
-        'products': Product.objects.all(),
         'categories': ProductCategory.objects.all(),
     }
+    context.update({
+        'products': Product.objects.filter(category_id=category_id) if category_id else Product.objects.all()
+    })
     return render(request, 'products/products.html', context)
