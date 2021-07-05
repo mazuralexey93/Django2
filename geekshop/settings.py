@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'products.context_processors.product'
             ],
         },
     },
@@ -142,10 +143,3 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 DOMAIN_NAME = 'http://localhost:8000'
-
-#
-# from django.core.mail import send_mail
-# send_mail('Django mail', 'This email was sent with Django.', 'user3212name@gmail.com',
-#           ['user3212name@gmail.com'], fail_silently=False)
-#
-# # Переместить во вьюшку с регистрацией юзера

@@ -40,7 +40,6 @@ class User(AbstractUser):
                 """,
                 settings.EMAIL_HOST_USER,
                 [self.email],
-                # ['user3212name@gmail.com'],
                 fail_silently=False
             )
         super().save(*args, **kwargs)
