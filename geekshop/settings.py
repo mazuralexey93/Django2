@@ -134,3 +134,18 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'user3212name@gmail.com'
+EMAIL_HOST_PASSWORD = 'Aspirine2!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DOMAIN_NAME = 'http://localhost:8000'
+
+#
+# from django.core.mail import send_mail
+# send_mail('Django mail', 'This email was sent with Django.', 'user3212name@gmail.com',
+#           ['user3212name@gmail.com'], fail_silently=False)
+#
+# # Переместить во вьюшку с регистрацией юзера
