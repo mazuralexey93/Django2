@@ -4,7 +4,7 @@
         <li><a href="{% url 'index' %}" class="{% if request.resolver_match.route == '' %}
                     active
                   {% endif %}">домой</a></li>
-        <li><a href="{% url 'products:category' 0 %}" class="{% if request.resolver_match.route == 'products/' %}
+        <li><a href="{% url 'mainapp:category' 0 %}" class="{% if request.resolver_match.route == 'mainapp/' %}
                         active
                       {% endif %}">продукты</a></li>
         <li>

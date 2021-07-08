@@ -13,7 +13,7 @@ def index(request):
     products = Product.objects.all()[:4]
 
     context = {
-        'products': products,
+        'mainapp': products,
         'some_name': 'hello',
         'title': title,
         'basket': basket,
