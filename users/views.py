@@ -17,13 +17,8 @@ from common.views import CommonContextMixin
 from users.models import User
 
 
-# class UserLoginView(CommonContextMixin, LoginView):
-#     template_name = 'users/login.html'
-#     form_class = UserLoginForm
-#     title = 'GeekShop - Авторизация'
-
 def login(request):
-    title = 'входа'
+    title = 'вход'
 
     login_form = UserLoginForm(data=request.POST)
     next = request.GET['next'] if 'next' in request.GET.keys() else ''

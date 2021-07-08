@@ -42,4 +42,4 @@ class User(AbstractUser):
                 [self.email],
                 fail_silently=False
             )
-        super().save(*args, **kwargs)
+            super().save(*args, **kwargs)

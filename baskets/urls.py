@@ -1,6 +1,8 @@
 from django.urls import path
 
 from baskets.views import basket_add, basket_remove, basket_edit
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'baskets'
 
@@ -10,3 +12,6 @@ urlpatterns = [
     path('edit/<int:id>/<int:quantity>/', basket_edit, name='basket_edit'),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
