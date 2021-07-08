@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'products.context_processors.product'
             ],
         },
     },
@@ -134,3 +135,11 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = '/users/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'user3212name@gmail.com'
+EMAIL_HOST_PASSWORD = 'Aspirine2!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+DOMAIN_NAME = 'http://localhost:8000'
