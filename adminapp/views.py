@@ -24,7 +24,7 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'adminapp/admin_users_form.html'
-    success_url = reverse_lazy('admin_staff:users')
+    success_url = reverse_lazy('admin_staff:authapp')
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -60,7 +60,7 @@ def user_delete(request, pk):
         user.is_active = False
         user.save()
 
-        return HttpResponseRedirect(reverse('admin_staff:users'))
+        return HttpResponseRedirect(reverse('admin_staff:authapp'))
 
     context = {
         'title': title,
