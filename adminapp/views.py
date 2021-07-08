@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class UserListView(LoginRequiredMixin, ListView):
     model = User
-    template_name = 'adminapp/users.html'
+    template_name = 'adminapp/admin_users.html'
     context_object_name = 'objects'
 
     def get_queryset(self):
@@ -23,13 +23,13 @@ class UserListView(LoginRequiredMixin, ListView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserRegisterForm
-    template_name = 'adminapp/User_form.html'
+    template_name = 'adminapp/admin_users_form.html'
     success_url = reverse_lazy('admin_staff:users')
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def user_update(request, pk):
-    title = 'пользователи/рудактирование'
+    title = 'пользователи/редактирование'
 
     edit_user = get_object_or_404(User, pk=pk)
 
@@ -47,7 +47,7 @@ def user_update(request, pk):
         'update_form': edit_form,
     }
 
-    return render(request, 'adminapp/user_update.html', context)
+    return render(request, 'adminapp/admin_users_update.html', context)
 
 
 def user_delete(request, pk):
@@ -67,7 +67,7 @@ def user_delete(request, pk):
         'user_to_delete': user,
     }
 
-    return render(request, 'adminapp/user_delete.html', context)
+    return render(request, 'adminapp/admin_users_delete.html', context)
 
 
 def categories(request):
@@ -80,12 +80,12 @@ def categories(request):
         'objects': categories_list
     }
 
-    return render(request, 'adminapp/categories.html', content)
+    return render(request, 'adminapp/admin_categories.html', content)
 
 
 class ProductCategoryCreateView(CreateView):
     model = ProductCategory
-    template_name = 'adminapp/category_create.html'
+    template_name = 'adminapp/admin_categories_create.html'
     form_class = ProductCategoryEditForm
 
     def get_context_data(self, **kwargs):
@@ -111,12 +111,12 @@ def category_update(request, pk):
                'form': edit_form,
                }
 
-    return render(request, 'adminapp/category_create.html', context)
+    return render(request, 'adminapp/admin_categories_create.html', context)
 
 
 class CategoryDeleteView(DeleteView):
     model = ProductCategory
-    template_name = 'adminapp/category_delete.html'
+    template_name = 'adminapp/admin_categories_delete.html'
     context_object_name = 'category_to_delete'
     success_url = reverse_lazy('admin_staff:categories')
 
@@ -130,7 +130,7 @@ class CategoryDeleteView(DeleteView):
 
 class ProductsListView(ListView):
     model = Product
-    template_name = 'adminapp/product_list.html'
+    template_name = 'adminapp/admin_products.html'
 
     def get_queryset(self):
         return Product.objects.filter(category__pk=self.kwargs.get('pk'))
@@ -155,7 +155,7 @@ def products(request, pk):
             'objects': categories,
         }
 
-        return render(request, 'adminapp/categories.html', context)
+        return render(request, 'adminapp/admin_categories.html', context)
 
     category = get_object_or_404(ProductCategory, pk=pk)
     products_category = Product.objects.filter(category__pk=pk)
@@ -166,7 +166,7 @@ def products(request, pk):
         'objects': products_category,
     }
 
-    return render(request, 'adminapp/products.html', content)
+    return render(request, 'adminapp/admin_products.html', content)
 
 
 def product_create(request, pk):
@@ -188,7 +188,7 @@ def product_create(request, pk):
         'category': product_category
     }
 
-    return render(request, 'adminapp/product_update.html', context)
+    return render(request, 'adminapp/admin_product_update.html', context)
 
 
 def product_read(request, pk):
@@ -200,7 +200,7 @@ def product_read(request, pk):
         'product': product,
     }
 
-    return render(request, 'adminapp/product_read.html', context)
+    return render(request, 'adminapp/admin_product_read.html', context)
 
 
 def product_update(request, pk):
@@ -223,7 +223,7 @@ def product_update(request, pk):
         'category': product.category
     }
 
-    return render(request, 'adminapp/product_update.html', context)
+    return render(request, 'adminapp/admin_product_update.html', context)
 
 
 def product_delete(request, pk):
@@ -242,4 +242,4 @@ def product_delete(request, pk):
         'зкщвгсе_to_delete': product,
     }
 
-    return render(request, 'adminapp/product_delete.html', context)
+    return render(request, 'adminapp/admin_product_delete.html', context)
