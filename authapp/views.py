@@ -66,10 +66,8 @@ def edit(request):
     title = 'редактирование'
 
     if request.method == 'POST':
-        edit_form = UserEditForm(request.POST, request.FILES, \
-                                 instance=request.user)
-        profile_form = UserProfileEditForm(request.POST, \
-                                           instance=request.user.userprofile)
+        edit_form = UserEditForm(request.POST, request.FILES, instance=request.user)
+        profile_form = UserProfileEditForm(request.POST, instance=request.user.userprofile)
         if edit_form.is_valid() and profile_form.is_valid():
             edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))

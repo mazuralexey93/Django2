@@ -239,7 +239,7 @@ def product_delete(request, pk):
 
     context = {
         'title': title,
-        'зкщвгсе_to_delete': product,
+        'product_to_delete': product,
     }
 
     return render(request, 'adminapp/admin_product_delete.html', context)

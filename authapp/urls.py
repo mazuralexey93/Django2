@@ -3,6 +3,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 import authapp.views as authapp
 
+app_name = 'authapp'
 
 urlpatterns = [
     path('login/', authapp.login, name='login'),
