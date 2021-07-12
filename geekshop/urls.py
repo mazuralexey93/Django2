@@ -22,7 +22,7 @@ from authapp import urls as authapp_urls
 from mainapp import urls as mainapp_urls
 from adminapp import urls as adminapp_urls
 from basketapp import urls as basketapp_urls
-# from ordersapp import urls as ordersapp_urls
+from ordersapp import urls as ordersapp_urls
 
 
 urlpatterns = [
@@ -32,7 +32,7 @@ urlpatterns = [
     path('auth/', include(authapp_urls, namespace='auth'), name='auth'),
     path('products/', include(mainapp_urls, namespace='products'), name='products'),
     path('basket/', include(basketapp_urls, namespace='basket'), name='basket'),
-    # path('order/', include(ordersapp_urls, namespace='order'), name='order'),
+    path('order/', include(ordersapp_urls, namespace='order'), name='order'),
 
 
     path('', views.index, name='index'),
