@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from authapp.models import User
-
 from mainapp.models import Product
 
 
@@ -26,6 +25,14 @@ class Basket(models.Model):
         auto_now_add=True
     )
 
+    def save(self, *args, **kwargs):
+        if self.pk:
+            self.product.quantity -= self.quantity - self.__class__.get_item(self.pk).quantity
+        else:
+            self.product.quantity -= self.quantity
+        self.product.save()
+        super().save()
+
     @property
     def product_cost(self):
         return self.product.price * self.quantity
@@ -49,4 +56,8 @@ class Basket(models.Model):
     def delete(self):
         self.product.quantity += self.quantity
         self.product.save()
-        super(self.__class__, self).delete()
+        super().delete()
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(id=pk)
