@@ -39,25 +39,38 @@ window.onload = function () {
         }
     });
 
-    $('.order_form').on('click', 'input[type="checkbox"]', function (event) {
-        var target = event.target;
-        orderitem_num = parseInt(target.name.replace('orderitems-', '').replace('-DELETE', ''));
-        if (target.checked) {
-            delta_quantity = -quantity_arr[orderitem_num];
-        } else {
-            delta_quantity = quantity_arr[orderitem_num];
-        }
+    // $('.order_form').on('click', 'input[type="checkbox"]', function (event) {
+    //     var target = event.target;
+    //     orderitem_num = parseInt(target.name.replace('orderitems-', '').replace('-DELETE', ''));
+    //     if (target.checked) {
+    //         delta_quantity = -quantity_arr[orderitem_num];
+    //     } else {
+    //         delta_quantity = quantity_arr[orderitem_num];
+    //     }
+    //     orderSummaryUpdate(price_arr[orderitem_num], delta_quantity);
+    // });
+
+    function deleteOrderItem(row) {
+        var target_name = row[0].querySelector('input[type="number"]').name;
+        orderitem_num = parseInt(target_name.replace('orderitems-', '').replace('-quantity', ''));
+        delta_quantity = -quantity_arr[orderitem_num];
         orderSummaryUpdate(price_arr[orderitem_num], delta_quantity);
-    });
+    };
+
 
     function orderSummaryUpdate(orderitem_price, delta_quantity) {
-       delta_cost = orderitem_price * delta_quantity;
+        delta_cost = orderitem_price * delta_quantity;
 
-       order_total_cost = Number((order_total_cost + delta_cost).toFixed(2));
-       order_total_quantity = order_total_quantity + delta_quantity;
+        order_total_cost = Number((order_total_cost + delta_cost).toFixed(2));
+        order_total_quantity = order_total_quantity + delta_quantity;
 
-       $('.order_total_cost').html(order_total_cost.toString());
-       $('.order_total_quantity').html(order_total_quantity.toString());
+        $('.order_total_cost').html(order_total_cost.toString());
+        $('.order_total_quantity').html(order_total_quantity.toString());
+        $('.order_form select').change(function () {
+            var target = event.target;
+            console.log(target);
+        });
+
     }
 }
 
