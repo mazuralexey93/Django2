@@ -102,14 +102,16 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 # }
 
 DATABASES = {
-    'default': env.db('DATABASE_URL')
-}
+    'default':
+        {'ENGINE': 'django.db.backends.postgresql',
+         'NAME': 'myshop',  # имя бд
+         'USER': 'user',
+         'PASSWORD': 'user',
+         'HOST': 'localhost',
+         'PORT': '5432',
+         }
+    }
 DATABASES['default']['ATOMIC_REQUESTS'] = True
-
-
-import dj_database_url
-
-# DATABASES = {'default': dj_database_url.config(default='psql://geekuser:Admin123@127.0.0.1:5432/geekshop_db')}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
