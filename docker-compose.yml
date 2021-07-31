@@ -25,8 +25,8 @@ services:
     image: postgres:12
     environment:
       POSTGRES_DB: 'myshop'  # name db в django
-      POSTGRES_USER: 'user'
-      POSTGRES_PASSWORD: 'user'
+      POSTGRES_USER: 'mywebsiteuser'
+      POSTGRES_PASSWORD: 'Password'
     volumes:
       - ./pg-data:/var/lib/postgresql/data
     ports:

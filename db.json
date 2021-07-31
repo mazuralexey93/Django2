@@ -4,7 +4,9 @@
     "pk": 1,
     "fields": {
       "name": "Дом",
-      "description": ""
+      "description": "",
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   },
@@ -13,7 +15,9 @@
     "pk": 2,
     "fields": {
       "name": "Офис",
-      "description": ""
+      "description": "",
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   },
@@ -27,7 +31,9 @@
       "short_desc": "Очень интересный стул",
       "description": "Описание продукта",
       "price": "3456.00",
-      "quantity": 10
+      "quantity": 10,
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   },
@@ -41,7 +47,9 @@
       "short_desc": "Уникальный дизайн",
       "description": "Описание товара",
       "price": "14500.00",
-      "quantity": 100
+      "quantity": 100,
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   },
@@ -55,7 +63,9 @@
       "short_desc": "Супер лампа",
       "description": "",
       "price": "5600.00",
-      "quantity": 5
+      "quantity": 5,
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   },
@@ -69,7 +79,9 @@
       "short_desc": "Лучший стол для работы",
       "description": "",
       "price": "34000.00",
-      "quantity": 10
+      "quantity": 10,
+      "created": "2021-05-28T21:13:37.236",
+      "updated": "2021-05-28T21:46:30.828"
 
     }
   }

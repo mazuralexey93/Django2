@@ -101,12 +101,13 @@ WSGI_APPLICATION = 'geekshop.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default':
         {'ENGINE': 'django.db.backends.postgresql',
          'NAME': 'myshop',  # имя бд
-         'USER': 'user',
-         'PASSWORD': 'user',
+         'USER': 'mywebsiteuser',
+         'PASSWORD': 'Password',
          'HOST': 'localhost',
          'PORT': '5432',
          }
