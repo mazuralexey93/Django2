@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings
 from authapp.models import User
-
 from mainapp.models import Product
 
 
@@ -45,3 +44,7 @@ class Basket(models.Model):
     @staticmethod
     def get_items(user):
         return Basket.objects.filter(user=user)
+
+    @staticmethod
+    def get_item(pk):
+        return Basket.objects.get(id=pk)

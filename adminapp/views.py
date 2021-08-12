@@ -85,7 +85,7 @@ def categories(request):
 
 class ProductCategoryCreateView(CreateView):
     model = ProductCategory
-    template_name = 'adminapp/admin_categories_create.html'
+    template_name = 'adminapp/admin_category_create.html'
     form_class = ProductCategoryEditForm
 
     def get_context_data(self, **kwargs):
@@ -111,12 +111,12 @@ def category_update(request, pk):
                'form': edit_form,
                }
 
-    return render(request, 'adminapp/admin_categories_create.html', context)
+    return render(request, 'adminapp/admin_category_create.html', context)
 
 
 class CategoryDeleteView(DeleteView):
     model = ProductCategory
-    template_name = 'adminapp/admin_categories_delete.html'
+    template_name = 'adminapp/admin_category_delete.html'
     context_object_name = 'category_to_delete'
     success_url = reverse_lazy('admin_staff:categories')
 
@@ -204,7 +204,6 @@ def product_read(request, pk):
 
 
 def product_update(request, pk):
-
     product = get_object_or_404(Product, pk=pk)
     title = f'продукты/{product.name}'
 
