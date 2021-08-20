@@ -2,9 +2,16 @@ from django.shortcuts import render
 
 from basketapp.models import Basket
 from mainapp.models import Product
+from ordersapp.models import Order
+
+
+def get_data(user):
+    return Order.objects.select_related('user').all()
 
 
 def index(request):
+
+    data = get_data(request.user)
     basket = []
     if request.user.is_authenticated:
         basket = Basket.objects.filter(user=request.user)
@@ -17,6 +24,7 @@ def index(request):
         'some_name': 'hello',
         'title': title,
         'basket': basket,
+        'data': data
     }
     return render(request, 'geekshop/index.html', context)
 

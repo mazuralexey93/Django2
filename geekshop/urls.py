@@ -24,7 +24,6 @@ from adminapp import urls as adminapp_urls
 from basketapp import urls as basketapp_urls
 from ordersapp import urls as ordersapp_urls
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admin_staff/', include(adminapp_urls, namespace='admin_staff'), name='admin_staff'),
@@ -34,7 +33,6 @@ urlpatterns = [
     path('basket/', include(basketapp_urls, namespace='basket'), name='basket'),
     path('order/', include(ordersapp_urls, namespace='order'), name='order'),
 
-
     path('', views.index, name='index'),
     path('contacts/', views.contacts, name='contacts'),
     path('', include('social_django.urls', namespace='social')),
@@ -43,3 +41,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    import debug_toolbar
+
+    urlpatterns += [path('__debug__', include(debug_toolbar.urls))]

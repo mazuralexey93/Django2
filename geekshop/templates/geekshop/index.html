@@ -19,6 +19,12 @@
         </div>
     </div>
 
+    <ul>
+    {% for order in data %}
+    <li>{{ order.id }} {{order.user.username}}</li>
+      {% endfor %}
+    </ul>
+
     <div class="featured">
         <div class="featured-menu">
             <a class="active" href="#">Популярные</a><a href="#">Новинки</a>
