@@ -1,5 +1,6 @@
 {% extends 'geekshop/base.html' %}
 {% load static %}
+{% load cache %}
 
 {% block style %}
     <link rel="stylesheet" type="text/css" href="{% static '/style.css' %}">
@@ -19,11 +20,32 @@
         </div>
     </div>
 
-{#    <ul>#}
-{#    {% for order in data %}#}
-{#    <li>{{ order.id }} {{order.user.username}}</li>#}
-{#      {% endfor %}#}
-{#    </ul>#}
+{#    Пример кэширования шаблонов   #}
+    <ul>
+        {% for order in data %}
+            <li>
+                {{ order.id }} {{ order.user.username }}
+                {% cache 600 order %}
+                    {{ order.name }}
+                {% endcache %}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% with info=order.get_info%}
+
+    <ul>
+    <li>
+        {{ info.id }}
+        {{ info.name }}
+    </li>
+   <li>
+       {{ info }}
+        {{ info.description }}
+   </li>
+
+     </ul>
+   {% endwith %}
 
     <div class="featured">
         <div class="featured-menu">
