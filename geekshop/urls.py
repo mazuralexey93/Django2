@@ -23,6 +23,7 @@ from mainapp import urls as mainapp_urls
 from adminapp import urls as adminapp_urls
 from basketapp import urls as basketapp_urls
 from ordersapp import urls as ordersapp_urls
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,6 +34,8 @@ urlpatterns = [
     path('basket/', include(basketapp_urls, namespace='basket'), name='basket'),
     path('order/', include(ordersapp_urls, namespace='order'), name='order'),
 
+    # Можно кэшировать через декоратор так
+    # path('', cache_page(300)(views.index), name='index'),
     path('', views.index, name='index'),
     path('contacts/', views.contacts, name='contacts'),
     path('', include('social_django.urls', namespace='social')),
