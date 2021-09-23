@@ -20,33 +20,6 @@
         </div>
     </div>
 
-{#    Пример кэширования шаблонов   #}
-    <ul>
-        {% for order in data %}
-            <li>
-                {{ order.id }} {{ order.user.username }}
-                {% cache 600 order %}
-                    {{ order.name }}
-                {% endcache %}
-            </li>
-        {% endfor %}
-    </ul>
-
-{% with info=order.get_info%}
-
-    <ul>
-    <li>
-        {{ info.id }}
-        {{ info.name }}
-    </li>
-   <li>
-       {{ info }}
-        {{ info.description }}
-   </li>
-
-     </ul>
-   {% endwith %}
-
     <div class="featured">
         <div class="featured-menu">
             <a class="active" href="#">Популярные</a><a href="#">Новинки</a>
